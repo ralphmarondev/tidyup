@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# TidyUp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TidyUp is a simple and cute to-do list application that helps you stay organized and manage tasks efficiently. It
+features user authentication, task management, and a settings page for updating user information. Built with React and
+styled using Bootstrap, it connects to a Django Rest Framework (DRF) backend for data management.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication**: Register and log in to manage your tasks.
+- **Task Management**: Add, edit, delete, and mark tasks as completed.
+- **User Settings**: Update your profile and personal information.
+- **Bootstrap Styling**: Simple, responsive, and clean user interface.
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**: React, Bootstrap, TypeScript
+- **Backend**: Django Rest Framework (DRF)
+- **Database**: SQLite (or any database you prefer with DRF)
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Prerequisites
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Node.js (v16+)
+- Yarn (for package management)
+- Python (for Django backend)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Installation
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### Frontend (React + Bootstrap)
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ralphmarondev/tidyup.git
+   cd tidyup
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   yarn dev
+   ```
+
+   The app should now be running at [http://localhost:5173](http://localhost:3000).
+
+#### Backend (Django Rest Framework)
+
+1. Clone the backend repository (if separate):
+
+   ```bash
+   git clone https://github.com/ralphmarondev/tidyup-backend.git
+   cd tidyup-backend
+   ```
+
+2. Install the backend dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Migrate the database:
+
+   ```bash
+   python manage.py migrate
+   ```
+
+4. Run the Django server:
+
+   ```bash
+   python manage.py runserver
+   ```
+
+   The backend API should be running at [http://localhost:8000](http://localhost:8000).
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push your changes and create a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
