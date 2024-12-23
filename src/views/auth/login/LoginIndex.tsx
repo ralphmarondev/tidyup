@@ -20,6 +20,10 @@ function LoginIndex() {
     navigate('/home')
   }
 
+  const createNewAccount = () => {
+    navigate('/register')
+  }
+
   return (
     <div className="container mt-3">
       <h2>Login</h2>
@@ -46,7 +50,13 @@ function LoginIndex() {
             onChange={onPasswordChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary mb-3">Login</button>
+        <button
+          type="button"
+          className="nav-link"
+          onClick={createNewAccount}>
+          Create an Account
+        </button>
       </form>
     </div>
   )
