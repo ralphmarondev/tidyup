@@ -37,6 +37,7 @@ function LoginIndex() {
             className="form-control"
             value={username}
             onChange={onUsernameChange}
+            placeholder="Enter your username"
           />
         </div>
         <div className="col mb-3">
@@ -48,6 +49,7 @@ function LoginIndex() {
             className="form-control"
             value={password}
             onChange={onPasswordChange}
+            placeholder="Enter your password"
           />
         </div>
         <button type="submit" className="btn btn-primary mb-3">Login</button>
