@@ -1,9 +1,9 @@
-import LoginIndex from "./views/auth/login/LoginIndex.tsx";
+import HomeIndex from "./views/home/HomeIndex.tsx";
 
 function App() {
   return (
     <div>
-      <LoginIndex/>
+      <HomeIndex/>
     </div>
   )
 }
