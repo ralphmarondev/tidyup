@@ -1,4 +1,4 @@
-function RegisterIndex(){
+function RegisterIndex() {
   return (
     <div>
       <h2 className="text-primary">Register</h2>
