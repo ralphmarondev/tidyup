@@ -1,10 +1,11 @@
-import HomeIndex from "./views/home/HomeIndex.tsx";
+import RouterComponent from './router'
+import {BrowserRouter as Router} from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <HomeIndex/>
-    </div>
+    <Router>
+      <RouterComponent/>
+    </Router>
   )
 }
 

@@ -1,8 +1,10 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function LoginIndex() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value)
@@ -15,6 +17,7 @@ function LoginIndex() {
   const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`Username: ${username}\nPassword: ${password}`)
+    navigate('/home')
   }
 
   return (
