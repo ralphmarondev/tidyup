@@ -1,4 +1,5 @@
 import TasksTable from './TasksTable.tsx'
+import NewTaskModal from './components/NewTaskModal.tsx'
 
 function HomeIndex() {
   return (
@@ -21,6 +22,8 @@ function HomeIndex() {
       <div className="container mt-3">
         <TasksTable/>
       </div>
+
+      <NewTaskModal/>
     </>
   )
 }

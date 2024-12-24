@@ -46,7 +46,13 @@ function TasksTable() {
             placeholder="Search task"/>
         </div>
         <div className="col text-end">
-          <button className="btn btn-primary" type="button">New Task</button>
+          <button
+            className="btn btn-primary"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#newTaskModal">
+            New Task
+          </button>
         </div>
       </div>
       <table className="table table-striped table-hover table-bordered">
@@ -70,8 +76,8 @@ function TasksTable() {
               <th className="text-center">{task.priority}</th>
               <th className="text-center">{task.status}</th>
               <th className="text-center">
-                <button className="btn btn-success btn-sm me-3" type="button">Update</button>
-                <button className="btn btn-danger btn-sm" type="button">Delete</button>
+                <button className="btn btn-success btn-sm m-1" type="button">Update</button>
+                <button className="btn btn-danger btn-sm m-1" type="button">Delete</button>
               </th>
             </tr>
           ))
