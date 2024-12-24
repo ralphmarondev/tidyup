@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {registerUser} from '../../../api/authApi.ts'
 
 function RegisterIndex() {
   const [fullName, setFullName] = useState('')
@@ -19,10 +20,19 @@ function RegisterIndex() {
     setPassword(e.target.value)
   }
 
-  const onRegister = (e: React.FormEvent<HTMLFormElement>) => {
+  const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`Username: ${username}\nPassword: ${password}`)
-    navigate('/')
+    try {
+      const response = await registerUser(fullName, username, password)
+      if (response.success) {
+        navigate('/')
+      } else {
+        console.log(`Registration failed: ${response.message}`)
+      }
+    } catch (err) {
+      console.log(`Error: ${err}`)
+    }
   }
 
   const alreadyHaveAndAccount = () => {

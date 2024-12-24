@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {loginUser} from '../../../api/authApi.ts'
 
 function LoginIndex() {
   const [username, setUsername] = useState('')
@@ -14,10 +15,22 @@ function LoginIndex() {
     setPassword(e.target.value)
   }
 
-  const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`Username: ${username}\nPassword: ${password}`)
-    navigate('/home')
+
+    try {
+      const response = await loginUser(username, password)
+      console.log('Login response:', response)
+
+      if (response.success) {
+        navigate('/home')
+      } else {
+        console.log(`Login failed: ${response.message}`)
+      }
+    } catch (err) {
+      console.log(`Error: ${err}`)
+    }
   }
 
   const createNewAccount = () => {
