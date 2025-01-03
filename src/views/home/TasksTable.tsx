@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import axiosInstance from '../../api/axiosInstance.ts'
 
 interface TaskType {
   id: number;
@@ -10,29 +11,36 @@ interface TaskType {
 }
 
 function TasksTable() {
-  const tasks: TaskType[] = [
-    {
-      id: 1,
-      name: 'Eat',
-      start: '7:23AM',
-      end: '2:00PM',
-      priority: 'HIGH',
-      status: 'PENDING'
-    },
-    {
-      id: 2,
-      name: 'Sleep',
-      start: '8:03PM',
-      end: '6:00AM',
-      priority: 'HIGH',
-      status: 'PENDING'
-    }
-  ]
+  const [tasks, setTasks] = useState<TaskType[]>([])
   const [searchTask, setSearchTask] = useState('')
+
+  // fetch task ^^
+  useEffect(() => {
+    const fetchTasks = () => {
+      axiosInstance.get('tasks/')
+        .then(response => {
+          const fetchTasks = response.data.map((task: any) => ({
+            id: task.id,
+            name: task.name,
+            start: task.start_date,
+            end: task.end_date,
+            priority: task.priority === 1 ? 'HIGH' : 'LOW',
+            status: task.status === 1 ? 'PENDING' : 'COMPLETED'
+          }))
+          setTasks(fetchTasks)
+        })
+        .catch(error => {
+          console.error(`Error: ${error}`)
+        })
+    }
+    fetchTasks()
+  }, [])
 
   const onSearchTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTask(e.target.value)
   }
+
+  const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(searchTask.toLowerCase()))
 
   return (
     <>
@@ -68,7 +76,7 @@ function TasksTable() {
         </thead>
         <tbody>
         {
-          tasks.map((task: TaskType) => (
+          filteredTasks.map((task: TaskType) => (
             <tr key={task.id}>
               <th>{task.name}</th>
               <th className="text-center">{task.start}</th>
