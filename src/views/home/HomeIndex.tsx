@@ -1,5 +1,5 @@
 import TasksTable from './TasksTable.tsx'
-import NewTaskModal from './components/NewTaskModal.tsx'
+import NewTaskModal from './modals/NewTaskModal.tsx'
 
 function HomeIndex() {
   return (

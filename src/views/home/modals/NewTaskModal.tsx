@@ -1,10 +1,16 @@
 import React, {FormEvent, useState} from 'react'
+import {AxiosError} from 'axios'
+import axiosInstance from '../../../api/axiosInstance.ts'
 
 interface TaskType {
   name: string,
   start_date: string,
   end_date: string,
   priority: number
+}
+
+interface ErrorResponse {
+  message?: string
 }
 
 function NewTaskModal() {
@@ -31,9 +37,23 @@ function NewTaskModal() {
     setTask(prevTask => ({...prevTask, priority: parseInt(e.target.value)}))
   }
 
-  const onSave = (e: FormEvent<HTMLFormElement>) => {
+  const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(task)
+    try {
+      const response = await axiosInstance.post('tasks/', {
+        name: task.name,
+        start_date: task.start_date,
+        end_date: task.end_date,
+        priority: task.priority
+      })
+      console.log(`Response: ${response.data}`)
+      return response.data
+    } catch (error: unknown) {
+      const err = error as AxiosError<ErrorResponse>
+      const errorMessage = err.response?.data?.message || 'Saving failed. Please try again later.'
+      throw new Error(errorMessage)
+    }
   }
 
   return (
